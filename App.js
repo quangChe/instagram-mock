@@ -2,15 +2,16 @@ import React from 'react';
 import { StyleSheet, View } from 'react-native';
 import { Constants } from 'expo';
 
-import ImageHeader from './components/ImageHeader';
+import ImageCard from './components/ImageCard';
+import {getImageFromId} from './utils/api';
 
 export default class App extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <ImageHeader 
+        <ImageCard
           fullName={'Quang Che'}
-          linkText={'Comments'}
+          image={{uri: getImageFromId(11)}}
           onPressLinkText={() => console.log('Press!')}/>
       </View>
     );
