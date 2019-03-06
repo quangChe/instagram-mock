@@ -17,6 +17,13 @@ const Avatar = ({size, backgroundColor, initials}) => {
   );
 }
 
+
+Avatar.propTypes = {
+  size: PropTypes.number.isRequired,
+  backgroundColor: ColorPropType.isRequired,
+  initials: PropTypes.string.isRequired
+}
+
 const styles = StyleSheet.create({
   container: {
     alignItems: 'center',
@@ -29,11 +36,5 @@ const styles = StyleSheet.create({
     fontFamily: Platform.OS === 'ios' ? 'Helvetica Neue' : 'monospace',
   }
 })
-
-Avatar.propTypes = {
-  size: PropTypes.number.isRequired,
-  backgroundColor: ColorPropType.isRequired,
-  initials: PropTypes.string.isRequired
-}
 
 export default Avatar;
