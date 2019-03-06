@@ -22,7 +22,9 @@ const ImageHeader = ({fullName, linkText, onPressLinkText}) => {
       </Text>
       {!!linkText && (
         <TouchableOpacity onPress={onPressLinkText}>
-          <Text numberOfLines={1}>{linkText}</Text>
+          <Text 
+            numberOfLines={1} 
+            style={styles.touchable}>{linkText}</Text>
         </TouchableOpacity>
       )}
     </View>
@@ -40,12 +42,15 @@ const styles = StyleSheet.create({
     height: 60,
     flexDirection: 'row',
     alignItems: 'center',
-    paddingHorizontal: 10,
+    paddingHorizontal: 15,
   },
   text: {
     flex: 1,
-    marginHorizontal: 6,
+    marginHorizontal: 8,
     fontWeight: '500',    
+  },
+  touchable: {
+    fontWeight: '500',
   }
 });
 

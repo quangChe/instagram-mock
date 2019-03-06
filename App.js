@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import { Constants } from 'expo';
 
 import ImageHeader from './components/ImageHeader';
@@ -10,7 +10,7 @@ export default class App extends React.Component {
       <View style={styles.container}>
         <ImageHeader 
           fullName={'Quang Che'}
-          linkText={'View Comments'}
+          linkText={'Comments'}
           onPressLinkText={() => console.log('Press!')}/>
       </View>
     );
