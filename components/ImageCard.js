@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Image, StyleSheet, View } from 'react-native';
+import { Image, StyleSheet, View, ActivityIndicator } from 'react-native';
 
 import ImageHeader from './ImageHeader';
 
@@ -16,15 +16,34 @@ export default class ImageCard extends React.Component {
     onPressLinkText: () => {},
   };
 
+  state = {
+    loading: true,
+  }
+
+  handleLoading = () => {
+    this.setState({loading: false});
+  }
+
   render() {
     const { fullName, image, onPressLinkText } = this.props;
+    const { loading } = this.state;
 
     return (
       <View>
         <ImageHeader 
           fullName={fullName}
           onPressLinkText={onPressLinkText}/>
-        <Image style={styles.image} source={image}/>
+        <View style={styles.image}>
+          {loading && (
+            <ActivityIndicator
+              style={StyleSheet.absoluteFill}
+              size="large"/>
+          )}
+          <Image 
+            style={StyleSheet.absoluteFill} 
+            source={image}
+            onLoad={this.handleLoading}/>
+        </View>
       </View>
     );
   }
