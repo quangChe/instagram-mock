@@ -2,7 +2,7 @@ export const fetchImages = async () => {
   const response = await fetch('https://picsum.photos/list');
   const images = await response.json();
 
-  return images;
+  return images.slice(20);
 };
 
 export const getImageFromId = id =>

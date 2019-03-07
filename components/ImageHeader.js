@@ -11,7 +11,7 @@ import Avatar from './Avatar';
 import getAvatarColor from '../utils/getAvatarColor';
 import getInitials from '../utils/getInitials';
 
-const ImageHeader = ({fullName, onPressLinkText}) => {
+const ImageHeader = ({fullName, onPressOptions}) => {
   return (
     <View style={styles.container}>
       <Avatar
@@ -21,10 +21,10 @@ const ImageHeader = ({fullName, onPressLinkText}) => {
       <Text style={styles.text} numberOfLines={1}>
         {fullName}
       </Text>
-      <TouchableOpacity onPress={onPressLinkText}>
+      <TouchableOpacity onPress={onPressOptions}>
         <Image 
           style={styles.touchable}
-          source={require('../assets/comment-bubble.png')}></Image>
+          source={require('../assets/options-button.png')}></Image>
       </TouchableOpacity>
     </View>
   );
@@ -32,7 +32,7 @@ const ImageHeader = ({fullName, onPressLinkText}) => {
 
 ImageHeader.propTypes = {
   fullName: PropTypes.string.isRequired,
-  onPressLinkText: PropTypes.func.isRequired
+  onPressOptions: PropTypes.func.isRequired
 }
 
 const styles = StyleSheet.create({
@@ -50,9 +50,9 @@ const styles = StyleSheet.create({
     fontWeight: '500',    
   },
   touchable: {
-    width: 20,
-    height: 20,
-    backgroundColor: 'rgba(0, 0, 0, 0)',
+    width: 24,
+    height: 24,
+    backgroundColor: 'transparent',
   }
 });
 
