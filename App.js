@@ -2,17 +2,20 @@ import React from 'react';
 import { StyleSheet, View } from 'react-native';
 import { Constants } from 'expo';
 
-import ImageCard from './components/ImageCard';
-import {getImageFromId} from './utils/api';
+import CardList from './components/CardList';
 
 export default class App extends React.Component {
+  state = {
+    items: [
+      {id: 11, author: 'Quang Che'},
+      {id: 12, author: 'Robert Nguyen'},
+      {id: 13, author: 'Forest Whitaker'}
+    ]
+  }
   render() {
     return (
       <View style={styles.container}>
-        <ImageCard
-          fullName={'Quang Che'}
-          image={{uri: getImageFromId(11)}}
-          onPressLinkText={() => console.log('Press!')}/>
+        <CardList items={this.state.items}/>
       </View>
     );
   }

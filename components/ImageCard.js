@@ -29,7 +29,7 @@ export default class ImageCard extends React.Component {
     const { loading } = this.state;
 
     return (
-      <View>
+      <View style={styles.container}>
         <ImageHeader 
           fullName={fullName}
           onPressLinkText={onPressLinkText}/>
@@ -50,6 +50,9 @@ export default class ImageCard extends React.Component {
 }
 
 const styles = StyleSheet.create({
+  container: {
+    marginBottom: 50,
+  },
   image: {
     aspectRatio: 1,
     backgroundColor: 'rgba(0, 0, 0, 0.02)',
