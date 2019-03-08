@@ -6,7 +6,7 @@ import {StyleSheet, TouchableOpacity,
 const OptionsMenu = ({toggleOptions}) => {
   return (
     <TouchableOpacity 
-      style={[styles.optionMenu,
+      style={[styles.container,
               StyleSheet.absoluteFill]}
       onPress={toggleOptions}
       activeOpacity={1}>
@@ -44,7 +44,7 @@ OptionsMenu.propTypes = {
 export default OptionsMenu;
 
 const styles = StyleSheet.create({
-  optionMenu: {
+  container: {
     backgroundColor: 'rgba(0, 0, 0, 0.7)',
     flex: 1,
     alignItems: 'center',

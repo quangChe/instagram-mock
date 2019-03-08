@@ -1,8 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Image, StyleSheet, View, ActivityIndicator } from 'react-native';
+import { Image, StyleSheet, View, ActivityIndicator, TouchableOpacity } from 'react-native';
 
 import ImageHeader from './ImageHeader';
+import ImageFooter from './ImageFooter';
 import OptionsMenu from './OptionsMenu';
 
 export default class ImageCard extends React.Component {
@@ -13,13 +14,15 @@ export default class ImageCard extends React.Component {
   };
 
   static defaultProps = {
-    linkText: '',
     onPressOptions: () => {},
   };
 
   state = {
     loading: true,
     options: false,
+    itemLiked: false,
+    likeAnimation: false,
+    lastPress: 0,
   }
 
   handleLoading = () => {
@@ -30,9 +33,22 @@ export default class ImageCard extends React.Component {
     this.setState({options: !this.state.options});
   }
 
+  buttonLike = () => {
+    this.setState({itemLiked: !this.state.itemLiked});
+  }
+
+  tapLike = () => {
+    const firstPress = new Date().getTime() - this.state.lastPress;
+    console.log(this.state.lastPress);
+    return (firstPress < 300) 
+      ? this.setState({likeAnimation: true, itemLiked: true}, 
+          () => setTimeout(() => this.setState({likeAnimation: false}), 800)) 
+      : this.setState({lastPress: new Date().getTime()});
+  }
+
   render() {
     const { fullName, image } = this.props;
-    const { loading, options } = this.state;
+    const { loading, options, itemLiked, likeAnimation } = this.state;
 
     return (
       <View style={styles.container}>
@@ -45,14 +61,30 @@ export default class ImageCard extends React.Component {
               style={StyleSheet.absoluteFill}
               size="large"/>
           )}
-          <Image 
-            style={StyleSheet.absoluteFill} 
-            source={image}
-            onLoad={this.handleLoading}/>
+          <TouchableOpacity
+            activeOpacity={1}
+            style={StyleSheet.absoluteFill}
+            onPress={this.tapLike}>
+            <Image 
+              style={{aspectRatio: 1}} 
+              source={image}
+              onLoad={this.handleLoading}/>
+          </TouchableOpacity>
+          {likeAnimation && (
+            <View style={styles.likeAnimation}>
+              <Image 
+                style={styles.bigHeart}
+                source={require('../assets/big-heart.png')}/>
+            </View>
+          )}
           {options && (
             <OptionsMenu toggleOptions={this.toggleOptions}/>
           )}
         </View>
+        <ImageFooter
+          itemLiked={itemLiked}
+          likeClick={this.buttonLike}
+          />
       </View>
     );
   }
@@ -66,4 +98,14 @@ const styles = StyleSheet.create({
     aspectRatio: 1,
     backgroundColor: 'rgba(0, 0, 0, 0.02)',
   },
+  likeAnimation: {
+    backgroundColor: 'rgba(0, 0, 0, 0.2)',
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  bigHeart: {
+    width: 100,
+    resizeMode: 'contain',
+  }
 })

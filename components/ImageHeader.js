@@ -21,9 +21,9 @@ const ImageHeader = ({fullName, onPressOptions}) => {
       <Text style={styles.text} numberOfLines={1}>
         {fullName}
       </Text>
-      <TouchableOpacity onPress={onPressOptions}>
+      <TouchableOpacity style={styles.optionBtn} onPress={onPressOptions}>
         <Image 
-          style={styles.touchable}
+          style={styles.optionIcon}
           source={require('../assets/options-button.png')}></Image>
       </TouchableOpacity>
     </View>
@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     paddingLeft: 8,
-    paddingRight: 20,
+    paddingRight: 8,
     marginBottom: 5,
   },
   text: {
@@ -49,7 +49,11 @@ const styles = StyleSheet.create({
     marginHorizontal: 8,
     fontWeight: '500',    
   },
-  touchable: {
+  optionBtn: {
+    padding: 16,
+    paddingRight: 8,
+  },
+  optionIcon: {
     width: 24,
     height: 24,
     backgroundColor: 'transparent',
