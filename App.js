@@ -3,7 +3,7 @@ import { StyleSheet, View, Platform } from 'react-native';
 import { Constants } from 'expo';
 
 import FeedScreen from './screens/FeedScreen';
-import CommentList from './components/CommentList';
+import NavigationBar from './components/NavigationBar';
 
 export default class App extends React.Component {
   state = {
@@ -15,9 +15,11 @@ export default class App extends React.Component {
     return (
       <View style={styles.container}>
         {/* <FeedScreen style={styles.feed}/> */}
-        <CommentList
-          items={this.state.comments}
-        />
+        <NavigationBar
+          title="Testing 1 2 3"
+          leftText="Back"
+          onPressLeftText={() => console.log('hello!')}
+        ></NavigationBar>
       </View>
     );
   }
