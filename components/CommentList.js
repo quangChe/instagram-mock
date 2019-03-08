@@ -7,11 +7,14 @@ export default class CommentList extends React.Component {
     items: PropTypes.arrayOf(PropTypes.string).isRequired
   }
 
-  renderItem = (item) => 
-    <View style={styles.itemContainer}>
-      <Text>{item}</Text>
-    </View>
-
+  renderItem = (item) => {
+    return (
+      <View key={this.props.items.indexOf(item)} style={styles.itemContainer}>
+        <Text>{item}</Text>
+      </View>
+    )
+  }
+    
   render() {
     const {items} = this.props;
     return (
