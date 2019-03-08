@@ -27,11 +27,12 @@ export default class ImageFooter extends React.Component {
 
   render() {
     const {itemLiked} = this.state;
+    const { commentClick } = this.props;
 
     return (
       <View style={styles.container}>
         <TouchableOpacity
-          onPress={() => console.log('Comment screen.')}>
+          onPress={commentClick}>
           <Image 
             style={styles.touchable}
             source={require('../assets/comment-bubble.png')}></Image>

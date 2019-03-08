@@ -15,13 +15,22 @@ export default class CardList extends React.Component {
         author: PropTypes.string.isRequired,
       })
     ).isRequired,
+    onPressComments: PropTypes.func.isRequired,
+    onPressOptions: PropTypes.func.isRequired,
   };
 
-  renderItem = ({item: {id, author}}) => (
-    <ImageCard
-      fullName={author}
-      image={{uri: getImageFromId(id)}}/>
-  )
+  renderItem = ({item: {id, author}}) => {
+    const { onPressComments, onPressOptions } = this.props;
+
+    return (
+      <ImageCard
+        fullName={author}
+        image={{uri: getImageFromId(id)}}
+        onPressComments={() => onPressComments(id)}
+        onPressOptions={() => onPressOptions()}
+        />
+    )
+  }
   
 
   render() {

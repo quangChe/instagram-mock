@@ -10,16 +10,18 @@ export default class ImageCard extends React.Component {
   static propTypes = {
     fullName: PropTypes.string.isRequired,
     image: Image.propTypes.source.isRequired,
-    onPressOptions: PropTypes.func,
+    onPressOptions: PropTypes.func.isRequired,
+    onPressComments: PropTypes.func.isRequired,
   };
 
   static defaultProps = {
     onPressOptions: () => {},
+    onPressComments: () => {},
   };
 
   state = {
     loading: true,
-    options: false,
+    // options: false,
     itemLiked: false,
     likeAnimation: false,
     lastPress: 0,
@@ -47,8 +49,8 @@ export default class ImageCard extends React.Component {
   }
 
   render() {
-    const { fullName, image } = this.props;
-    const { loading, options, itemLiked, likeAnimation } = this.state;
+    const { fullName, image, onPressComments } = this.props;
+    const { loading, itemLiked, likeAnimation } = this.state;
 
     return (
       <View style={styles.container}>
@@ -77,13 +79,14 @@ export default class ImageCard extends React.Component {
                 source={require('../assets/big-heart.png')}/>
             </View>
           )}
-          {options && (
+          {/* {options && (
             <OptionsMenu toggleOptions={this.toggleOptions}/>
-          )}
+          )} */}
         </View>
         <ImageFooter
           itemLiked={itemLiked}
           likeClick={this.buttonLike}
+          commentClick={onPressComments}
           />
       </View>
     );
