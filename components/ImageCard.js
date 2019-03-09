@@ -4,7 +4,6 @@ import { Image, StyleSheet, View, ActivityIndicator, TouchableOpacity } from 're
 
 import ImageHeader from './ImageHeader';
 import ImageFooter from './ImageFooter';
-import OptionsMenu from './OptionsMenu';
 
 export default class ImageCard extends React.Component {
   static propTypes = {
@@ -21,7 +20,6 @@ export default class ImageCard extends React.Component {
 
   state = {
     loading: true,
-    // options: false,
     itemLiked: false,
     likeAnimation: false,
     lastPress: 0,
@@ -31,17 +29,12 @@ export default class ImageCard extends React.Component {
     this.setState({loading: false});
   }
 
-  toggleOptions = () => {
-    this.setState({options: !this.state.options});
-  }
-
   buttonLike = () => {
     this.setState({itemLiked: !this.state.itemLiked});
   }
 
   tapLike = () => {
     const firstPress = new Date().getTime() - this.state.lastPress;
-    console.log(this.state.lastPress);
     return (firstPress < 300) 
       ? this.setState({likeAnimation: true, itemLiked: true}, 
           () => setTimeout(() => this.setState({likeAnimation: false}), 800)) 
@@ -49,14 +42,14 @@ export default class ImageCard extends React.Component {
   }
 
   render() {
-    const { fullName, image, onPressComments } = this.props;
+    const { fullName, image, onPressComments, onPressOptions } = this.props;
     const { loading, itemLiked, likeAnimation } = this.state;
 
     return (
       <View style={styles.container}>
         <ImageHeader 
           fullName={fullName}
-          onPressOptions={this.toggleOptions}/>
+          onPressOptions={onPressOptions}/>
         <View style={styles.image}>
           {loading && (
             <ActivityIndicator
@@ -79,9 +72,6 @@ export default class ImageCard extends React.Component {
                 source={require('../assets/big-heart.png')}/>
             </View>
           )}
-          {/* {options && (
-            <OptionsMenu toggleOptions={this.toggleOptions}/>
-          )} */}
         </View>
         <ImageFooter
           itemLiked={itemLiked}

@@ -14,7 +14,7 @@ export default class FeedScreen extends React.Component {
   static propTypes = {
     style: ViewPropTypes.style,
     onPressComments: PropTypes.func.isRequired,
-    onPressOptions: PropTypes.func,
+    onPressOptions: PropTypes.func.isRequired,
   }
 
   static defaultProps = {

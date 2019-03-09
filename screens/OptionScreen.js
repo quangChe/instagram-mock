@@ -1,34 +1,36 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {StyleSheet, TouchableOpacity, 
-  TouchableHighlight, View, Text} from 'react-native';
+import {
+  StyleSheet, TouchableOpacity, 
+  TouchableHighlight, View, Text,
+} from 'react-native';
 
-const OptionsMenu = ({toggleOptions}) => {
+const OptionScreen = ({closeOptions}) => {
   return (
     <TouchableOpacity 
       style={[styles.container,
               StyleSheet.absoluteFill]}
-      onPress={toggleOptions}
+      onPress={closeOptions}
       activeOpacity={1}>
       <View style={styles.menuBox}>
         <TouchableHighlight
           activeOpacity={0.7}
           underlayColor="#e0e0e0"
-          onPress={() => console.log('Message!')}
+          onPress={() => closeOptions('Message')}
           style={[styles.menuItem, styles.touchBorder, styles.borderBottom]}>
           <Text style={styles.menuText}>Message User</Text>
           </TouchableHighlight>
         <TouchableHighlight
           activeOpacity={0.7}
           underlayColor="#e0e0e0"
-          onPress={() => console.log('Share!')}
+          onPress={() => closeOptions('Share')}
           style={[styles.menuItem, styles.borderBottom]}>
           <Text style={styles.menuText}>Share Item</Text>
         </TouchableHighlight>
         <TouchableHighlight
           activeOpacity={0.7}
           underlayColor="#e0e0e0"
-          onPress={() => console.log('Flag!')}
+          onPress={() => closeOptions('Flag')}
           style={[styles.menuItem, styles.touchBorder]}>
           <Text style={styles.menuTextWarn}>Flag User</Text>
         </TouchableHighlight>
@@ -37,23 +39,23 @@ const OptionsMenu = ({toggleOptions}) => {
   )
 }
 
-OptionsMenu.propTypes = {
-  toggleOptions: PropTypes.func,
+OptionScreen.propTypes = {
+  closeOptions: PropTypes.func,
 }
 
-export default OptionsMenu;
+export default OptionScreen;
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: 'rgba(0, 0, 0, 0.7)',
+    backgroundColor: 'rgba(0, 0, 0, 0.8)',
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
   },
   menuBox: {
     backgroundColor: '#f0f0f0',
-    width: '80%',
-    height: '60%',
+    width: '90%',
+    height: 200,
     borderRadius: 10,
     alignItems: 'center',
     overflow: 'hidden',

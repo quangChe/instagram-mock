@@ -10,6 +10,7 @@ import { Constants } from 'expo';
 
 import FeedScreen from './screens/FeedScreen';
 import CommentScreen from './screens/CommentScreen';
+import OptionScreen from './screens/OptionScreen';
 
 const ASYNC_STORAGE_COMMENTS_KEY = 'ASYNC_STORAGE_COMMENTS_KEY';
 
@@ -43,8 +44,10 @@ export default class App extends React.Component {
     });
   };
 
-  closeAllModals = () => {
-    this.setState({
+  closeAllModals = msg => {
+    if (msg) console.log(msg);
+
+    return this.setState({
       modalOpen: null,
       selectedItemId: null,
     })
@@ -73,7 +76,7 @@ export default class App extends React.Component {
           style={styles.feed}
           onPressComments={this.openCommentScreen}
           onPressOptions={this.openOptionScreen}/>
-
+          
         <Modal
           visible={modalOpen === 'comments'}
           animationType="slide"
@@ -88,9 +91,10 @@ export default class App extends React.Component {
 
         <Modal
           visible={modalOpen === 'options'}
-          animationType="slide"
+          transparent={true}
           onRequestClose={this.closeAllModals}>
-          // Options Menu
+            <OptionScreen
+              closeOptions={this.closeAllModals}/>
         </Modal>
       </View>
     );
