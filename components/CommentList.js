@@ -10,11 +10,14 @@ export default class CommentList extends React.Component {
   renderItem = (item) => {
     return (
       <View key={this.props.items.indexOf(item)} style={styles.itemContainer}>
-        <Text>{item}</Text>
+        <Text>
+          <Text style={styles.name}>You: </Text>
+          {item}
+        </Text>
       </View>
     )
   }
-    
+    ;
   render() {
     const {items} = this.props;
     return (
@@ -26,9 +29,12 @@ export default class CommentList extends React.Component {
 }
 
 const styles = StyleSheet.create({
+  name: {
+    fontWeight: '500',
+  },
   itemContainer: {
-    marginLeft: 20,
     paddingVertical: 20,
+    paddingLeft: 20,
     paddingRight: 20,
     borderBottomWidth: StyleSheet.hairlineWidth,
     borderBottomColor: '#e0e0e0'

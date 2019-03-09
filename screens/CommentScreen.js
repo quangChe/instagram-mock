@@ -9,7 +9,7 @@ import NavigationBar from '../components/NavigationBar';
 const CommentScreen = ({ style, comments, onClose, onSubmitComment }) => (
   <SafeAreaView style={style}>
     <NavigationBar
-      title="Testing 1 2 3"
+      title="Comments"
       leftText="Back"
       onPressLeftText={onClose}/>
     <CommentList

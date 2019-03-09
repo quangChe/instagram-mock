@@ -87,6 +87,7 @@ export default class ImageCard extends React.Component {
           itemLiked={itemLiked}
           likeClick={this.buttonLike}
           commentClick={onPressComments}
+          author={fullName}
           />
       </View>
     );
